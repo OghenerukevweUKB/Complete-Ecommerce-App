@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_filters',
     'corsheaders',
+    'django_filters',
     'rest_framework',
     'playground',
     'debug_toolbar',
@@ -193,3 +193,14 @@ DEFAULT_FROM_EMAIL= 'preciousrita@gmail.com'
 ADMINS = [
     ('Rukky', 'Rukky@buy.com')
 ]
+
+CELERY_BROKER_URL = 'redis://localhost:6379/1'
+
+CELERY_BEAT_SCHEDULE={
+    'notify_customers':{
+        'task': 'playground.tasks.notify_customers',
+        'schedule': 5,
+        'args': ['Hello World']
+    }
+
+}
